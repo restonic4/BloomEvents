@@ -1,24 +1,62 @@
+import org.gradle.api.publish.maven.MavenPublication
+
 plugins {
     id 'java-library'
+    id 'maven-publish'
 }
 
 group = 'com.restonic4.bloom'
-version = '1.0'
+version = '1.0.0'
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-
-}
+dependencies { }
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
     }
-
     withSourcesJar()
+    withJavadocJar()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            artifactId = 'events'
+
+            pom {
+                name = 'BloomEvents'
+                description = 'Event system extracted from the Bloom game engine.'
+                url = 'https://github.com/restonic4/BloomEvents'
+
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://opensource.org/license/mit/'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'restonic4'
+                        name = 'restonic4'
+                        url = 'https://github.com/restonic4'
+                    }
+                }
+
+                scm {
+                    connection = 'scm:git:git://github.com/restonic4/BloomEvents.git'
+                    developerConnection = 'scm:git:ssh://github.com/restonic4/BloomEvents.git'
+                    url = 'https://github.com/restonic4/BloomEvents'
+                }
+            }
+        }
+    }
 }
 
 tasks.withType(JavaCompile).configureEach {

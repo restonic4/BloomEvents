@@ -30,6 +30,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Annotation processor that generates event dispatchers for {@link Event} interfaces.
+ */
 @SupportedAnnotationTypes("com.restonic4.bloom.events.processor.Event")
 public class EventProcessor extends AbstractProcessor {
     private static final String EVENT_CLASS = "com.restonic4.bloom.events.Event";
