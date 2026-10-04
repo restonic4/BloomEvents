@@ -1,4 +1,4 @@
-package com.restonic4.bloom.events.compiler;
+package com.restonic4.bloom.events.processor;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Filer;
@@ -30,7 +30,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-@SupportedAnnotationTypes("com.restonic4.bloom.events.compiler.Event")
+@SupportedAnnotationTypes("com.restonic4.bloom.events.processor.Event")
 public class EventProcessor extends AbstractProcessor {
     private static final String EVENT_CLASS = "com.restonic4.bloom.events.Event";
     private static final String FACTORY_CLASS = "com.restonic4.bloom.events.EventFactory";

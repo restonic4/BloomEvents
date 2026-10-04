@@ -1,4 +1,4 @@
-package com.restonic4.bloom.events.compiler;
+package com.restonic4.bloom.events.processor;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
