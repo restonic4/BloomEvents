@@ -12,5 +12,10 @@ public enum EventResult {
     /**
      * Indicates that the event completed successfully.
      */
-    SUCCEEDED
+    SUCCEEDED,
+
+    /**
+     * Continues event processing.
+     */
+    CONTINUE
 }
