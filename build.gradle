@@ -1,8 +1,7 @@
-import org.gradle.api.publish.maven.MavenPublication
-
 plugins {
     id 'java-library'
-    id 'maven-publish'
+    id 'signing'
+    id 'com.vanniktech.maven.publish' version '0.37.0'
 }
 
 group = 'com.restonic4.bloom'
@@ -18,43 +17,47 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
     }
-    withSourcesJar()
-    withJavadocJar()
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
+signing {
+    useGpgCmd()
+}
 
-            artifactId = 'events'
+mavenPublishing {
+    publishToMavenCentral(true)
+    signAllPublications()
 
-            pom {
-                name = 'BloomEvents'
-                description = 'Event system extracted from the Bloom game engine.'
-                url = 'https://github.com/restonic4/BloomEvents'
+    coordinates(
+            project.group.toString(),
+            'events',
+            project.version.toString()
+    )
 
-                licenses {
-                    license {
-                        name = 'MIT License'
-                        url = 'https://opensource.org/license/mit/'
-                    }
-                }
+    pom {
+        name = 'BloomEvents'
+        description = 'Event system extracted from the Bloom game engine.'
+        url = 'https://github.com/restonic4/BloomEvents'
 
-                developers {
-                    developer {
-                        id = 'restonic4'
-                        name = 'restonic4'
-                        url = 'https://github.com/restonic4'
-                    }
-                }
-
-                scm {
-                    connection = 'scm:git:git://github.com/restonic4/BloomEvents.git'
-                    developerConnection = 'scm:git:ssh://github.com/restonic4/BloomEvents.git'
-                    url = 'https://github.com/restonic4/BloomEvents'
-                }
+        licenses {
+            license {
+                name = 'MIT License'
+                url = 'https://opensource.org/license/mit/'
+                distribution = 'https://opensource.org/license/mit/'
             }
+        }
+
+        developers {
+            developer {
+                id = 'restonic4'
+                name = 'restonic4'
+                url = 'https://github.com/restonic4'
+            }
+        }
+
+        scm {
+            connection = 'scm:git:git://github.com/restonic4/BloomEvents.git'
+            developerConnection = 'scm:git:ssh://git@github.com/restonic4/BloomEvents.git'
+            url = 'https://github.com/restonic4/BloomEvents'
         }
     }
 }
